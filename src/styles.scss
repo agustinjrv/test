@@ -1,0 +1,31 @@
+:root {
+  color-scheme: dark;
+  font-family: Outfit, "Segoe UI", sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100%;
+  margin: 0;
+}
+
+body {
+  background:
+    radial-gradient(circle at top left, rgb(215 160 119 / 18%), transparent 32%),
+    linear-gradient(160deg, #1c1611 0%, #12100e 52%, #24170f 100%);
+  color: #f4efe6;
+}
+
+button,
+input {
+  font: inherit;
+}

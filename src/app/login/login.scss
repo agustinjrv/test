@@ -1,0 +1,174 @@
+:host {
+  display: block;
+  min-height: 100svh;
+}
+
+.login {
+  min-height: 100svh;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  align-items: center;
+  gap: 2.5rem;
+  padding: 2rem 1.25rem;
+}
+
+.login__brand {
+  color: #f4efe6;
+  max-width: 28rem;
+}
+
+.login__eyebrow {
+  margin: 0 0 0.75rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+  color: #d7a077;
+}
+
+.login__wordmark {
+  margin: 0;
+  font-family: Fraunces, Georgia, serif;
+  font-size: clamp(3.4rem, 9vw, 5.4rem);
+  font-weight: 500;
+  line-height: 0.9;
+}
+
+.login__tagline {
+  margin: 1.1rem 0 0;
+  max-width: 22rem;
+  color: #d5cec3;
+  line-height: 1.6;
+}
+
+.login__card {
+  width: min(100%, 26rem);
+  background: #f7f1e8;
+  color: #2b241c;
+  border-radius: 1.5rem;
+  padding: 1.6rem 1.4rem 1.4rem;
+  box-shadow: 0 24px 60px rgb(18 12 8 / 28%);
+}
+
+.login__header h2 {
+  margin: 0;
+  font-family: Fraunces, Georgia, serif;
+  font-size: 1.7rem;
+  font-weight: 500;
+}
+
+.login__header p {
+  margin: 0.4rem 0 1.3rem;
+  color: #6d6256;
+}
+
+.field {
+  display: grid;
+  gap: 0.4rem;
+  margin-bottom: 1rem;
+}
+
+.field label {
+  font-size: 0.86rem;
+  font-weight: 600;
+}
+
+.field input {
+  width: 100%;
+  border: 1px solid #d9cfc3;
+  background: #fffdf9;
+  border-radius: 0.85rem;
+  padding: 0.8rem 0.9rem;
+  font: inherit;
+  color: inherit;
+}
+
+.field input:focus {
+  outline: 2px solid #c9784a;
+  outline-offset: 1px;
+}
+
+.field__password {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+}
+
+.field__password input {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.ghost,
+.submit,
+.link {
+  font: inherit;
+  cursor: pointer;
+}
+
+.ghost {
+  height: 100%;
+  border: 1px solid #d9cfc3;
+  border-left: 0;
+  border-radius: 0 0.85rem 0.85rem 0;
+  background: #efe6d8;
+  color: #5b4d40;
+  padding: 0 0.9rem;
+}
+
+.field__error,
+.banner {
+  margin: 0;
+  color: #9a3b2f;
+  font-size: 0.82rem;
+}
+
+.banner {
+  background: #f8e4de;
+  border-radius: 0.75rem;
+  padding: 0.7rem 0.8rem;
+  margin-bottom: 1rem;
+}
+
+.submit {
+  width: 100%;
+  border: 0;
+  border-radius: 999px;
+  background: #1f1812;
+  color: #f7f1e8;
+  padding: 0.85rem 1rem;
+  font-weight: 600;
+}
+
+.submit:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+.demo {
+  margin-top: 1rem;
+  display: grid;
+  gap: 0.35rem;
+  color: #6d6256;
+  font-size: 0.84rem;
+}
+
+.demo p {
+  margin: 0;
+}
+
+.link {
+  justify-self: start;
+  border: 0;
+  background: transparent;
+  color: #9a4e28;
+  padding: 0;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+@media (min-width: 880px) {
+  .login {
+    grid-template-columns: 1fr auto;
+    padding: 3rem 6vw;
+  }
+}
