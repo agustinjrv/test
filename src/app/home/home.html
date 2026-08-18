@@ -1,0 +1,15 @@
+<section class="home" aria-labelledby="home-title">
+  <header class="home__bar">
+    <p class="home__mark">Luma</p>
+    <button type="button" (click)="logout()">Cerrar sesión</button>
+  </header>
+
+  <div class="home__panel">
+    <p class="home__eyebrow">Sesión activa</p>
+    <h1 id="home-title">Hola, {{ user()?.name }}</h1>
+    <p>
+      Entraste con <strong>{{ user()?.email }}</strong
+      >. Este dashboard es el destino protegido después del login.
+    </p>
+  </div>
+</section>

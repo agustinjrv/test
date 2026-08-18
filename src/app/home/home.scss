@@ -1,0 +1,60 @@
+:host {
+  display: block;
+  min-height: 100svh;
+}
+
+.home {
+  min-height: 100svh;
+  padding: 1.5rem 1.25rem 3rem;
+}
+
+.home__bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.home__mark {
+  margin: 0;
+  font-family: Fraunces, Georgia, serif;
+  font-size: 1.6rem;
+  color: #f4efe6;
+}
+
+.home__bar button {
+  font: inherit;
+  border: 1px solid #d7a077;
+  background: transparent;
+  color: #f4efe6;
+  border-radius: 999px;
+  padding: 0.55rem 0.95rem;
+  cursor: pointer;
+}
+
+.home__panel {
+  margin-top: 4rem;
+  max-width: 38rem;
+  color: #f4efe6;
+}
+
+.home__eyebrow {
+  margin: 0 0 0.7rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+  color: #d7a077;
+}
+
+.home__panel h1 {
+  margin: 0;
+  font-family: Fraunces, Georgia, serif;
+  font-size: clamp(2.3rem, 6vw, 3.8rem);
+  font-weight: 500;
+}
+
+.home__panel p {
+  margin: 1rem 0 0;
+  color: #d5cec3;
+  line-height: 1.7;
+}
