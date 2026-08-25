@@ -30,14 +30,18 @@ describe('Home', () => {
 
   it('greets the signed-in user', () => {
     expect(fixture.nativeElement.textContent).toContain('Hola, Sofía Marín');
-    expect(fixture.nativeElement.textContent).toContain('demo@luma.app');
+  });
+
+  it('shows the train menu option', () => {
+    const trainLink = fixture.nativeElement.querySelector('a[href="/train"]');
+    expect(trainLink?.textContent).toContain('Entrenar');
   });
 
   it('logs out and returns to login', () => {
     const router = TestBed.inject(Router);
     const navigate = vi.spyOn(router, 'navigateByUrl').mockResolvedValue(true);
 
-    fixture.nativeElement.querySelector('button')?.click();
+    fixture.nativeElement.querySelector('.home__bar button')?.click();
 
     expect(auth.logout).toHaveBeenCalled();
     expect(navigate).toHaveBeenCalledWith('/login');

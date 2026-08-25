@@ -4,12 +4,16 @@
     <button type="button" (click)="logout()">Cerrar sesión</button>
   </header>
 
-  <div class="home__panel">
-    <p class="home__eyebrow">Sesión activa</p>
+  <div class="home__intro">
+    <p class="home__eyebrow">Gimnasio</p>
     <h1 id="home-title">Hola, {{ user()?.name }}</h1>
-    <p>
-      Entraste con <strong>{{ user()?.email }}</strong
-      >. Este dashboard es el destino protegido después del login.
-    </p>
+    <p class="home__subtitle">Anotá tus entrenamientos rápido y seguí tu progreso.</p>
   </div>
+
+  <nav class="home__menu" aria-label="Menú principal">
+    <a routerLink="/train" class="home__item home__item--primary">
+      <span class="home__item-label">Entrenar</span>
+      <span class="home__item-desc">Elegí el día y registrá series</span>
+    </a>
+  </nav>
 </section>

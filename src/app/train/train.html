@@ -1,0 +1,45 @@
+<section class="train" aria-labelledby="train-title">
+  <header class="train__bar">
+    <a routerLink="/home" class="train__back">← Inicio</a>
+  </header>
+
+  @if (selectedDay(); as day) {
+    <div class="train__header">
+      <p class="train__eyebrow">{{ day.weekday }}</p>
+      <h1 id="train-title">{{ day.label }}</h1>
+      <p class="train__hint">Referencia del último entreno. Próximo paso: anotar series de hoy.</p>
+    </div>
+
+    <ul class="train__list">
+      @for (exercise of day.exercises; track exercise.id) {
+        <li class="train__card">
+          <div class="train__card-head">
+            <h2>{{ exercise.name }}</h2>
+            @if (exercise.note) {
+              <p class="train__note">{{ exercise.note }}</p>
+            }
+          </div>
+          <p class="train__ref">{{ formatSets(exercise.lastReference) }}</p>
+        </li>
+      }
+    </ul>
+  } @else {
+    <div class="train__header">
+      <p class="train__eyebrow">Entrenar</p>
+      <h1 id="train-title">¿Qué día toca?</h1>
+      <p class="train__hint">Elegí el bloque de hoy. La rutina está fija por ahora.</p>
+    </div>
+
+    <ul class="train__days">
+      @for (day of days; track day.id) {
+        <li>
+          <a [routerLink]="['/train', day.id]" class="train__day-link">
+            <span class="train__day-weekday">{{ day.weekday }}</span>
+            <span class="train__day-label">{{ day.label }}</span>
+            <span class="train__day-meta">{{ day.exercises.length }} ejercicios</span>
+          </a>
+        </li>
+      }
+    </ul>
+  }
+</section>

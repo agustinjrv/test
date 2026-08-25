@@ -1,0 +1,123 @@
+:host {
+  display: block;
+  min-height: 100svh;
+}
+
+.train {
+  min-height: 100svh;
+  padding: 1.5rem 1.25rem 3rem;
+  max-width: 40rem;
+  margin: 0 auto;
+}
+
+.train__bar {
+  margin-bottom: 2rem;
+}
+
+.train__back {
+  color: #d7a077;
+  text-decoration: none;
+  font-size: 0.92rem;
+}
+
+.train__back:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.train__header {
+  margin-bottom: 2rem;
+}
+
+.train__eyebrow {
+  margin: 0 0 0.7rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+  color: #d7a077;
+}
+
+.train__header h1 {
+  margin: 0;
+  font-family: Fraunces, Georgia, serif;
+  font-size: clamp(2rem, 5vw, 2.8rem);
+  font-weight: 500;
+  color: #f4efe6;
+}
+
+.train__hint {
+  margin: 0.85rem 0 0;
+  color: #d5cec3;
+  line-height: 1.6;
+}
+
+.train__days,
+.train__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.85rem;
+}
+
+.train__day-link {
+  display: grid;
+  gap: 0.25rem;
+  padding: 1.1rem 1.15rem;
+  border: 1px solid rgb(215 160 119 / 35%);
+  border-radius: 1rem;
+  background: rgb(247 241 232 / 4%);
+  color: inherit;
+  text-decoration: none;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.train__day-link:hover {
+  border-color: #d7a077;
+  background: rgb(247 241 232 / 8%);
+}
+
+.train__day-weekday {
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #d7a077;
+}
+
+.train__day-label {
+  font-family: Fraunces, Georgia, serif;
+  font-size: 1.35rem;
+  color: #f4efe6;
+}
+
+.train__day-meta {
+  font-size: 0.86rem;
+  color: #b8afa3;
+}
+
+.train__card {
+  padding: 1rem 1.1rem;
+  border-radius: 1rem;
+  border: 1px solid rgb(215 160 119 / 22%);
+  background: rgb(18 16 14 / 55%);
+}
+
+.train__card-head h2 {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #f4efe6;
+}
+
+.train__note {
+  margin: 0.35rem 0 0;
+  font-size: 0.82rem;
+  color: #d7a077;
+}
+
+.train__ref {
+  margin: 0.75rem 0 0;
+  font-size: 0.95rem;
+  color: #d5cec3;
+  font-variant-numeric: tabular-nums;
+}
