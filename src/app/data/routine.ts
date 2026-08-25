@@ -145,3 +145,7 @@ export function formatSets(sets: WorkoutSet[]): string {
 export function findWorkoutDay(dayId: string): WorkoutDay | undefined {
   return WORKOUT_DAYS.find((day) => day.id === dayId);
 }
+
+export function findExercise(dayId: string, exerciseId: string): Exercise | undefined {
+  return findWorkoutDay(dayId)?.exercises.find((exercise) => exercise.id === exerciseId);
+}

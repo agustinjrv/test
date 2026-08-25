@@ -1,42 +1,133 @@
 <section class="train" aria-labelledby="train-title">
+  @if (session.active() && dayId()) {
+    <div class="train__timer" aria-live="polite">
+      <div class="train__timer-date">{{ session.formattedDate() }}</div>
+      <div class="train__timer-clock">{{ session.formattedElapsed() }}</div>
+    </div>
+  }
+
   <header class="train__bar">
-    <a routerLink="/home" class="train__back">← Inicio</a>
+    @if (selectedExercise()) {
+      <a [routerLink]="['/train', dayId()]" class="train__back">← Ejercicios</a>
+    } @else if (selectedDay()) {
+      <a routerLink="/train" class="train__back">← Rutinas</a>
+    } @else {
+      <a routerLink="/home" class="train__back">← Inicio</a>
+    }
   </header>
 
-  @if (selectedDay(); as day) {
+  @if (selectedExercise(); as exercise) {
+    <div class="train__header">
+      <p class="train__eyebrow">Ejercicio</p>
+      <h1 id="train-title">{{ exercise.name }}</h1>
+      @if (exercise.note) {
+        <p class="train__note">{{ exercise.note }}</p>
+      }
+    </div>
+
+    <section class="train__reference" aria-label="Última sesión">
+      <p class="train__reference-label">Última sesión</p>
+      <p class="train__ref">{{ formatSets(exercise.lastReference) }}</p>
+
+      <div class="train__suggestions">
+        <p class="train__suggestions-label">Carga rápida</p>
+        <div class="train__chips">
+          @for (set of exercise.lastReference; track $index) {
+            <button type="button" class="train__chip" (click)="applySuggestion(set)">
+              {{ set.weightKg }} kg × {{ set.reps }}
+            </button>
+          }
+        </div>
+      </div>
+    </section>
+
+    <section class="train__sets" aria-label="Series de hoy">
+      @if (draftSets.length === 0) {
+        <p class="train__empty">Todavía no agregaste series.</p>
+      }
+
+      <ul class="train__set-list">
+        @for (set of draftSets; track $index) {
+          <li class="train__set-row">
+            <span class="train__set-index">{{ $index + 1 }}</span>
+            <label class="train__field">
+              <span>kg</span>
+              <input
+                type="number"
+                inputmode="decimal"
+                step="0.5"
+                min="0"
+                [value]="set.weightKg"
+                (input)="updateSet($index, 'weightKg', $any($event.target).value)"
+              />
+            </label>
+            <label class="train__field">
+              <span>reps</span>
+              <input
+                type="number"
+                inputmode="numeric"
+                step="1"
+                min="0"
+                [value]="set.reps"
+                (input)="updateSet($index, 'reps', $any($event.target).value)"
+              />
+            </label>
+            <button type="button" class="train__remove" (click)="removeSet($index)" aria-label="Quitar serie">
+              ×
+            </button>
+          </li>
+        }
+      </ul>
+    </section>
+
+    <div class="train__actions">
+      <button type="button" class="train__add-set" (click)="addSet()">Agregar serie</button>
+      <button type="button" class="train__save" (click)="saveExerciseAndBack()">Guardar y volver</button>
+    </div>
+  } @else if (selectedDay(); as day) {
     <div class="train__header">
       <p class="train__eyebrow">{{ day.weekday }}</p>
       <h1 id="train-title">{{ day.label }}</h1>
-      <p class="train__hint">Referencia del último entreno. Próximo paso: anotar series de hoy.</p>
+      <p class="train__hint">Elegí un ejercicio para registrar series.</p>
     </div>
 
     <ul class="train__list">
       @for (exercise of day.exercises; track exercise.id) {
-        <li class="train__card">
-          <div class="train__card-head">
-            <h2>{{ exercise.name }}</h2>
-            @if (exercise.note) {
-              <p class="train__note">{{ exercise.note }}</p>
+        <li>
+          <a
+            [routerLink]="['/train', day.id, exercise.id]"
+            class="train__exercise-link"
+            [class.train__exercise-link--done]="isExerciseDone(exercise.id)"
+          >
+            <div class="train__exercise-head">
+              <h2>{{ exercise.name }}</h2>
+              @if (isExerciseDone(exercise.id)) {
+                <span class="train__done-badge">Hecho</span>
+              }
+            </div>
+            @if (isExerciseDone(exercise.id)) {
+              <p class="train__ref">{{ formatSets(session.getExerciseSets(exercise.id)) }}</p>
+            } @else {
+              <p class="train__ref">Ref: {{ formatSets(exercise.lastReference) }}</p>
             }
-          </div>
-          <p class="train__ref">{{ formatSets(exercise.lastReference) }}</p>
+          </a>
         </li>
       }
     </ul>
   } @else {
     <div class="train__header">
       <p class="train__eyebrow">Entrenar</p>
-      <h1 id="train-title">¿Qué día toca?</h1>
-      <p class="train__hint">Elegí el bloque de hoy. La rutina está fija por ahora.</p>
+      <h1 id="train-title">Elegí tu rutina</h1>
+      <p class="train__hint">Seleccioná el bloque de hoy para empezar el entrenamiento.</p>
     </div>
 
     <ul class="train__days">
-      @for (day of days; track day.id) {
+      @for (day of days; track day.id; let i = $index) {
         <li>
           <a [routerLink]="['/train', day.id]" class="train__day-link">
-            <span class="train__day-weekday">{{ day.weekday }}</span>
+            <span class="train__day-number">{{ i + 1 }}</span>
             <span class="train__day-label">{{ day.label }}</span>
-            <span class="train__day-meta">{{ day.exercises.length }} ejercicios</span>
+            <span class="train__day-meta">{{ day.exercises.length }} ejercicios · {{ day.weekday }}</span>
           </a>
         </li>
       }

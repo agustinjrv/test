@@ -10,8 +10,36 @@
   margin: 0 auto;
 }
 
+.train__timer {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin: -1.5rem -1.25rem 1.25rem;
+  padding: 0.85rem 1.25rem;
+  background: rgb(28 22 17 / 92%);
+  border-bottom: 1px solid rgb(215 160 119 / 35%);
+  backdrop-filter: blur(8px);
+}
+
+.train__timer-date {
+  font-size: 0.82rem;
+  color: #d5cec3;
+  text-transform: capitalize;
+}
+
+.train__timer-clock {
+  font-family: Fraunces, Georgia, serif;
+  font-size: 1.5rem;
+  color: #f4efe6;
+  font-variant-numeric: tabular-nums;
+}
+
 .train__bar {
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
 }
 
 .train__back {
@@ -26,7 +54,7 @@
 }
 
 .train__header {
-  margin-bottom: 2rem;
+  margin-bottom: 1.75rem;
 }
 
 .train__eyebrow {
@@ -51,8 +79,15 @@
   line-height: 1.6;
 }
 
+.train__note {
+  margin: 0.5rem 0 0;
+  font-size: 0.86rem;
+  color: #d7a077;
+}
+
 .train__days,
-.train__list {
+.train__list,
+.train__set-list {
   list-style: none;
   margin: 0;
   padding: 0;
@@ -60,9 +95,10 @@
   gap: 0.85rem;
 }
 
-.train__day-link {
+.train__day-link,
+.train__exercise-link {
   display: grid;
-  gap: 0.25rem;
+  gap: 0.35rem;
   padding: 1.1rem 1.15rem;
   border: 1px solid rgb(215 160 119 / 35%);
   border-radius: 1rem;
@@ -72,19 +108,28 @@
   transition: border-color 0.15s ease, background 0.15s ease;
 }
 
-.train__day-link:hover {
+.train__day-link:hover,
+.train__exercise-link:hover {
   border-color: #d7a077;
   background: rgb(247 241 232 / 8%);
 }
 
-.train__day-weekday {
-  font-size: 0.72rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
+.train__day-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.7rem;
+  height: 1.7rem;
+  border-radius: 999px;
+  background: rgb(215 160 119 / 18%);
   color: #d7a077;
+  font-size: 0.82rem;
+  font-weight: 700;
 }
 
-.train__day-label {
+.train__day-label,
+.train__exercise-head h2 {
+  margin: 0;
   font-family: Fraunces, Georgia, serif;
   font-size: 1.35rem;
   color: #f4efe6;
@@ -95,29 +140,194 @@
   color: #b8afa3;
 }
 
-.train__card {
+.train__exercise-link--done {
+  border-color: rgb(122 168 122 / 55%);
+  background: rgb(122 168 122 / 8%);
+}
+
+.train__exercise-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.train__done-badge {
+  flex-shrink: 0;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #b8e0b8;
+  border: 1px solid rgb(122 168 122 / 45%);
+  border-radius: 999px;
+  padding: 0.2rem 0.55rem;
+}
+
+.train__reference {
+  margin-bottom: 1.5rem;
   padding: 1rem 1.1rem;
   border-radius: 1rem;
   border: 1px solid rgb(215 160 119 / 22%);
   background: rgb(18 16 14 / 55%);
 }
 
-.train__card-head h2 {
-  margin: 0;
-  font-size: 1.05rem;
-  font-weight: 600;
-  color: #f4efe6;
-}
-
-.train__note {
-  margin: 0.35rem 0 0;
-  font-size: 0.82rem;
+.train__reference-label,
+.train__suggestions-label {
+  margin: 0 0 0.45rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
   color: #d7a077;
 }
 
 .train__ref {
-  margin: 0.75rem 0 0;
+  margin: 0;
   font-size: 0.95rem;
   color: #d5cec3;
   font-variant-numeric: tabular-nums;
+}
+
+.train__suggestions {
+  margin-top: 1rem;
+}
+
+.train__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.train__chip {
+  font: inherit;
+  cursor: pointer;
+  border: 1px solid rgb(215 160 119 / 35%);
+  background: rgb(247 241 232 / 6%);
+  color: #f4efe6;
+  border-radius: 999px;
+  padding: 0.45rem 0.75rem;
+  font-size: 0.86rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.train__chip:hover {
+  border-color: #d7a077;
+  background: rgb(247 241 232 / 12%);
+}
+
+.train__sets {
+  margin-bottom: 1.5rem;
+}
+
+.train__empty {
+  margin: 0 0 1rem;
+  color: #b8afa3;
+  font-size: 0.92rem;
+}
+
+.train__set-row {
+  display: grid;
+  grid-template-columns: auto 1fr 1fr auto;
+  gap: 0.65rem;
+  align-items: end;
+  padding: 0.85rem 0.95rem;
+  border-radius: 0.95rem;
+  border: 1px solid rgb(215 160 119 / 18%);
+  background: rgb(18 16 14 / 45%);
+}
+
+.train__set-index {
+  align-self: center;
+  width: 1.6rem;
+  height: 1.6rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: rgb(215 160 119 / 15%);
+  color: #d7a077;
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+.train__field {
+  display: grid;
+  gap: 0.25rem;
+}
+
+.train__field span {
+  font-size: 0.72rem;
+  color: #b8afa3;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.train__field input {
+  width: 100%;
+  border: 1px solid rgb(215 160 119 / 25%);
+  background: rgb(247 241 232 / 6%);
+  color: #f4efe6;
+  border-radius: 0.75rem;
+  padding: 0.65rem 0.7rem;
+  font: inherit;
+  font-variant-numeric: tabular-nums;
+}
+
+.train__field input:focus {
+  outline: 2px solid #c9784a;
+  outline-offset: 1px;
+}
+
+.train__remove {
+  align-self: center;
+  width: 2rem;
+  height: 2rem;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: #b8afa3;
+  font-size: 1.3rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.train__remove:hover {
+  color: #f4efe6;
+  background: rgb(247 241 232 / 8%);
+}
+
+.train__actions {
+  display: grid;
+  gap: 0.75rem;
+  position: sticky;
+  bottom: 1rem;
+}
+
+.train__add-set,
+.train__save {
+  font: inherit;
+  cursor: pointer;
+  border-radius: 999px;
+  padding: 0.9rem 1rem;
+  font-weight: 600;
+}
+
+.train__add-set {
+  border: 1px solid rgb(215 160 119 / 45%);
+  background: rgb(247 241 232 / 6%);
+  color: #f4efe6;
+}
+
+.train__add-set:hover {
+  border-color: #d7a077;
+  background: rgb(247 241 232 / 10%);
+}
+
+.train__save {
+  border: 0;
+  background: #f7f1e8;
+  color: #1f1812;
+}
+
+.train__save:hover {
+  background: #efe6d8;
 }
